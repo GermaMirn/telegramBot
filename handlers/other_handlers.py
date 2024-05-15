@@ -22,3 +22,4 @@ async def start(message: Message, state: FSMContext):
     )
 
     await state.set_state(UserStates.userChooseButton)
+    # https://api.openweathermap.org/data/2.5/weather?q=Kaliningrad&appid=8def4781f2e941565e4ddf3a381bb60b&units=metric
