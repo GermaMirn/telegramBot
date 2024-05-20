@@ -26,4 +26,16 @@ def get_country_population():
     with open("countryData.json", "w", encoding="utf-8") as json_file:
         json.dump(result_data, json_file)
 
-get_country_population()
+def get_marvel_characters():
+    url_date = "https://www.marvel.com/v1/pagination/grid_cards?offset=0&limit=2808&entityType=character&sortField=title&sortDirection=asc"
+
+    raw_data = requests.get(url=url_date).json()
+
+    result_data = {}
+    for character_data in raw_data["data"]["results"]["data"]:
+        character_name = character_data["link"]["title"]
+        full_link = "https://www.marvel.com/" + character_data["link"]["link"]
+        result_data[character_name] = full_link
+    
+    with open("json_data_files/marvel_character_data.json", "w", encoding="utf-8") as json_file:
+        json.dump(result_data, json_file, ensure_ascii=False, indent=4)
